@@ -2,7 +2,6 @@
 #include <Windows.h>
 #include <tlhelp32.h>
 #include <Psapi.h>
-#include <detours.h>
 
 #include "signatures.h"
 
@@ -47,21 +46,4 @@ void SignatureSearch::Search(){
 		*it.address = (void*)(FindPattern("payday2_win32_release.exe", it.signature, it.mask) + it.offset);
 	printf("Signatures Found.\n");
 	allSignatures.clear(); //We don't need it, clear it.
-}
-
-
-FuncDetour::FuncDetour(void** oldF, void* newF) : oldFunction(oldF), newFunction(newF){
-	//DetourRestoreAfterWith();
-
-	DetourTransactionBegin();
-	DetourUpdateThread(GetCurrentThread());
-	DetourAttach(oldF, newF);
-	LONG result = DetourTransactionCommit();
-}
-
-FuncDetour::~FuncDetour(){
-	DetourTransactionBegin();
-	DetourUpdateThread(GetCurrentThread());
-	DetourDetach(oldFunction, newFunction);
-	LONG result = DetourTransactionCommit();
 }

@@ -6,7 +6,6 @@
 #include <string>
 #pragma comment(lib, "shlwapi.lib")
 
-extern bool IS_STANDALONE;
 extern std::string moduleFile;
 
 void InitiateStates();
