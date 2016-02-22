@@ -8,7 +8,7 @@
 	"updates" : [
 		{
 			"api_url" : "https://raw.github.com/HoxHud/BLT-CSE-bin/master/bltcse.ver",
-			"revision" : 3,
+			"revision" : 4,
 			"identifier" : "payday2blt",
 		},
 		{
@@ -18,7 +18,7 @@
 			"install_dir" : ".",
 			"display_name" : "Payday 2 BLT:CSE DLL",
 		}
-	]
+	],
 	"pre_hooks" : [
 		{ "hook_id" : "lib/entry", "script_path" : "req/utils.lua" },
 		{ "hook_id" : "lib/entry", "script_path" : "req/localization.lua" },
@@ -88,8 +88,11 @@
 		{	"hook_id" : "lib/managers/systemmenumanager",
 			"script_path" : "lua/SystemMenuManager.lua"
 		},
-		{ 	"hook_id" : "lib/network/networkgame",
-			"script_path" : "lua/NetworkGame.lua"
+		{ 	"hook_id" : "lib/network/base/basenetworksession",
+			"script_path" : "lua/BaseNetworkSession.lua"
+		},
+		{ 	"hook_id" : "lib/network/base/networkmanager",
+			"script_path" : "lua/NetworkManager.lua"
 		}
 	]
 }

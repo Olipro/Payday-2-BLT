@@ -65,7 +65,6 @@ end
 function LuaModUpdates:FetchUpdatesFromAPI( reqs, callback )
 
 	local function http_clbk( data, id )
-		
 		if data:is_nil_or_empty() then
 			log("[Error] Could not connect to PaydayMods.com API!")
 			return
@@ -75,7 +74,7 @@ function LuaModUpdates:FetchUpdatesFromAPI( reqs, callback )
 		if server_data then
 
 			for k, v in pairs( server_data ) do
-				log( ("[Updates] Received update data for '{1}', server revision: {2}"):gsub("{1}", k):gsub("{2}", v.revision) )
+				log(string.format("[Updates] Received update data for '%s', server revision: %i", k, v.revision))
 			end
 
 			local mods_needing_updates = {}
@@ -115,7 +114,8 @@ function LuaModUpdates:FetchUpdatesFromAPI( reqs, callback )
 	end
 
 	for _,path in ipairs(reqs) do
-		dohttpreq(path, http_clbk)
+		local url = path:gsub(" ", "%%20"):gsub("!", "%%21"):gsub("#", "%%23"):gsub("-", "%%2D")
+		dohttpreq(url, http_clbk)
 	end
 
 end
