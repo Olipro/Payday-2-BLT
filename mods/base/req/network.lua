@@ -88,24 +88,24 @@ function LNetwork:GetNumberOfPeers()
 	return i
 end
 
-function LNetwork:SendToPeers(type, data)
+function LNetwork:SendToPeers(type_prm, data)
 	local dataString = LNetwork.AllPeersString
 	dataString = dataString:gsub("{1}", LNetwork.AllPeers)
-	dataString = dataString:gsub("{2}", type)
+	dataString = dataString:gsub("{2}", type_prm)
 	dataString = dataString:gsub("{3}", data)
 	LNetwork:SendStringThroughChat(dataString)
 end
 
-function LNetwork:SendToPeer(peer, type, data)
+function LNetwork:SendToPeer(peer, type_prm, data)
 	local dataString = LNetwork.SinglePeerString
 	dataString = dataString:gsub("{1}", LNetwork.SinglePeer)
 	dataString = dataString:gsub("{2}", peer)
-	dataString = dataString:gsub("{3}", type)
+	dataString = dataString:gsub("{3}", type_prm)
 	dataString = dataString:gsub("{4}", data)
 	LNetwork:SendStringThroughChat(dataString)
 end
 
-function LNetwork:SendToPeersExcept(peer, type, data)
+function LNetwork:SendToPeersExcept(peer, type_prm, data)
 	local dataString = LNetwork.ExceptPeerString
 	local peerStr = peer
 	if type(peer) == "table" then
@@ -120,7 +120,7 @@ function LNetwork:SendToPeersExcept(peer, type, data)
 
 	dataString = dataString:gsub("{1}", LNetwork.ExceptPeer)
 	dataString = dataString:gsub("{2}", peerStr)
-	dataString = dataString:gsub("{3}", type)
+	dataString = dataString:gsub("{3}", type_prm)
 	dataString = dataString:gsub("{4}", data)
 	LNetwork:SendStringThroughChat(dataString)
 end
