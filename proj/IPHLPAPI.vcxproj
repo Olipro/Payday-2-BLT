@@ -39,12 +39,14 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>..\incl;..\..\curl\include;$(IncludePath)</IncludePath>
-    <LibraryPath>..\lib;..\..\curl\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\openssl-win32\include;..\incl;..\..\curl\include;..\..\zlib\;$(IncludePath)</IncludePath>
+    <LibraryPath>..\..\Detours\lib.X86;..\lib;..\..\curl\build\Win32\VC12\LIB Release - LIB OpenSSL\;..\..\zlib\contrib\vstudio\vc11\x86\ZlibStatRelease;D:\OpenSSL-Win32\lib\VC\static;$(LibraryPath)</LibraryPath>
+    <TargetName>BLTCSE</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>..\incl;..\..\curl\include;$(IncludePath)</IncludePath>
-    <LibraryPath>..\lib;..\..\curl\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\openssl-win32\include;..\incl;..\..\curl\include;..\..\zlib\;$(IncludePath)</IncludePath>
+    <LibraryPath>..\..\Detours\lib.X86;..\lib;..\..\curl\build\Win32\VC12\LIB Release - LIB OpenSSL\;..\..\zlib\contrib\vstudio\vc11\x86\ZlibStatRelease;D:\OpenSSL-Win32\lib\VC\static;$(LibraryPath)</LibraryPath>
+    <TargetName>BLTCSE</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -76,7 +78,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <ModuleDefinitionFile>iphp.def</ModuleDefinitionFile>
-      <AdditionalDependencies>libcurl_a.lib;detours.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libcurl.lib;detours.lib;zlibstat.lib;wldap32.lib;wsock32.lib;ws2_32.lib;libeay32MD.lib;ssleay32MD.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

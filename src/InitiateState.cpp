@@ -334,6 +334,19 @@ void* __fastcall do_game_update_new(void* thislol, int edx, int* a, int* b){
 // Mine worked fine, but this seems more elegant.
 
 //If you want elegant, make an actual class member function and recast it through vararg abuse. -Olipro.
+
+void luaL_openlib_wrapper(lua_State *L, const char *name, luaL_Reg elements[], int)
+{
+	lua_createtable(L, 0, 0);
+	while (elements->func)
+	{
+		lua_pushcclosure(L, elements->func, 0);
+		lua_setfield(L, -2, elements->name);
+		++elements;
+	}
+	lua_setfield(L, LUA_GLOBALSINDEX, name);
+}
+
 EXTERN_C IMAGE_DOS_HEADER __ImageBase;
 int __fastcall luaL_newstate_new(void* thislol, int edx, char no, char freakin, int clue){
 	lua_State *L = nullptr;
@@ -358,10 +371,10 @@ int __fastcall luaL_newstate_new(void* thislol, int edx, char no, char freakin, 
 	CREATE_LUA_FUNCTION(luaF_unzipfile, "unzip")
 
 	luaL_Reg consoleLib[] = { { "CreateConsole", luaF_createconsole }, { "DestroyConsole", luaF_destroyconsole }, { NULL, NULL } };
-	luaL_openlib(L, "console", consoleLib, 0);
+	luaL_openlib_wrapper(L, "console", consoleLib, 0);
 
 	luaL_Reg fileLib[] = { { "GetDirectories", luaF_getdir }, { "GetFiles", luaF_getfiles }, { "RemoveDirectory", luaF_removeDirectory }, { "DirectoryExists", luaF_directoryExists }, { NULL, NULL } };
-	luaL_openlib(L, "file", fileLib, 0);
+	luaL_openlib_wrapper(L, "file", fileLib, 0);
 
 	static std::string dir, file, safe_path;
 	if (!dir.length())

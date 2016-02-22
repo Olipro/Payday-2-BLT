@@ -2,6 +2,7 @@ bin/
 lib/detours*
 proj/Debug/addons.obj
 proj/Debug/console.obj
+proj/IPHLPAPI.opensdf
 *.obj
 *.log
 *.tlog
